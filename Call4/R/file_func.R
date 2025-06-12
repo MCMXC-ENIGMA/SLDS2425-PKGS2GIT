@@ -1195,7 +1195,7 @@ exam_text <- function(name, surname, matriculation_number){
   cat("  ",sprintf(paste0(file_name,".Rmd")),"\n\n")
   invisible(readline(prompt=cat("By pressing [enter]\nyou agree to be aware about where the file is located and its name")))
 
-  invisible(file.copy(locate_text, paste0(getwd(), "/",file_name, ".Rmd")))
+  out <- file.copy(locate_text, paste0(getwd(), "/",file_name, ".Rmd"))
 
 }
 
