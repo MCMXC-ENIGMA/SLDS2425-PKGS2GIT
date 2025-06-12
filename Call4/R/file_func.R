@@ -1200,6 +1200,8 @@ exam_text <- function(name, surname, matriculation_number){
 }
 
 
+
+
 make_exam <- function(name, surname, matriculation_number){
 
   exam_text(name, surname, matriculation_number)
