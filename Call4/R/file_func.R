@@ -1197,6 +1197,8 @@ exam_text <- function(name, surname, matriculation_number){
 
   out <- file.copy(locate_text, paste0(getwd(), "/",file_name, ".Rmd"))
 
+
+
 }
 
 
