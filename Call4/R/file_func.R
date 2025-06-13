@@ -1,8 +1,8 @@
 inst.libs <- function(pkgs=NULL){
 	 if(is.null(pkgs)){
-	 	pkgs <- c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes")
+	 	pkgs <- c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs")
 	 }else{
-	 	pkgs <- c(pkgs, c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes"))
+	 	pkgs <- c(pkgs, c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs"))
 	 }
 	 
      libs <- unlist(list(pkgs))
@@ -1202,4 +1202,99 @@ exam_text <- function(name, surname, matriculation_number){
 
 make_exam <- function(name, surname, matriculation_number){
   exam_text(name, surname, matriculation_number)
+}
+
+
+
+
+
+
+
+make_exam_gui <- function(){
+
+
+  act_psswd <- "shunt"
+  locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
+
+  #Name
+  ctrl <- cnt <- 1
+  limit <- 2
+  while(ctrl){
+    name <- dlg_input("Name")$res
+    if (!length(name)){
+      name <- dlg_input("Name")$res
+        if(cnt>limit)
+          stop("Exceeded maximum number of attempts to input a valid value\n")
+    } else {
+    ctrl <- 0
+    }
+    cnt <- cnt + 1
+  }
+  #Surname
+  ctrl <- cnt <- 1
+  while(ctrl){
+    surname <- dlg_input("Surname")$res
+    if (!length(surname)){
+      surname <- dlg_input("Surname")$res
+        if(cnt>limit)
+          stop("Exceeded maximum number of attempts to input a valid value\n")
+    } else {
+      ctrl <- 0
+    }
+    cnt <- cnt + 1
+  }
+  #Matriculation
+  ctrl <- cnt <- 1
+  while(ctrl){
+    mn <- dlg_input("Matriculation number")$res
+    if (!length(mn)){
+      mn <- dlg_input("Matriculation number")$res
+      if(cnt>limit)
+        stop("Exceeded maximum number of attempts to input a valid value\n")
+    } else {
+      ctrl <- 0
+    }
+    cnt <- cnt + 1
+  }
+
+
+  check_point <- dlg_message(c("Review your data", 
+    paste0("Name: ", name),
+    paste0("Surname: ", surname),
+    paste0("Matriculation number: ", mn),
+    "Is all correct?"
+    ), "yesno")$res
+
+    if(check_point=="no")
+      stop("Run the function again to input correct values")
+  
+
+  file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
+
+  res<-dlg_message(
+    c("The exam text will be saved in directory\n",
+    getwd(),
+    "\nThe file name will be\n",
+      file_name,
+    "\nBy pressing 'Ok' you agree to be aware about where the file is located and its name"),"okcancel")$res
+
+  if(res=="cancel")
+    stop("You have to press 'Ok'. Run the function again and follow the steps")
+
+
+
+  #Password
+  ctrl <- cnt <- 1
+  while(ctrl){
+    psswd <- dlg_input("Password")$res
+    if (psswd!=act_psswd){
+      psswd <- dlg_input("Password")$res
+      if(cnt>limit)
+        stop("Exceeded maximum number of attempts to input the correct password\n")
+    } else {
+      out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
+      ctrl <- 0
+    }
+    cnt <- cnt + 1
+  }
 }
