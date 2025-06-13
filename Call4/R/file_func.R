@@ -1210,6 +1210,7 @@ make_exam <- function(name, surname, matriculation_number){
 
 
 
+
 make_exam_gui <- function(){
 
 
