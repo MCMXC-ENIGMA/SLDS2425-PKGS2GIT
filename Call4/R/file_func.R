@@ -1213,7 +1213,7 @@ make_exam <- function(name, surname, matriculation_number){
 
 make_exam_gui <- function(){
 
-
+  require(svDialogs)
   act_psswd <- "shunt"
   locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
 
