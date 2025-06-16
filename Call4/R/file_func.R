@@ -1234,7 +1234,7 @@ make_exam_gui <- function(){
     surname <- dlg_input("Surname")$res
     if (!length(surname)){
       #surname <- dlg_input("Surname")$res
-        if(cnt>limit)
+        if(cnt>=limit)
           stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
       ctrl <- 0
@@ -1247,7 +1247,7 @@ make_exam_gui <- function(){
     mn <- dlg_input("Matriculation number")$res
     if (!length(mn)){
       #mn <- dlg_input("Matriculation number")$res
-      if(cnt>limit)
+      if(cnt>=limit)
         stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
       ctrl <- 0
@@ -1287,7 +1287,7 @@ make_exam_gui <- function(){
     psswd <- dlg_input("Password")$res
     if (psswd!=act_psswd){
       #psswd <- dlg_input("Password")$res
-      if(cnt>limit)
+      if(cnt>=limit)
         stop("Exceeded maximum number of attempts to input the correct password\n")
     } else {
       out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
