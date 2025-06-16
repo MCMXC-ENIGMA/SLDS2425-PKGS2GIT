@@ -1266,15 +1266,20 @@ make_exam_gui <- function(){
 
   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
 
+  cond <- 1
+  while(cond){
   res<-dlg_message(
     c("The exam text will be saved in directory\n",
     getwd(),
     "\nThe file name will be\n",
       file_name,
-    "\nBy pressing 'Ok' you agree to be aware about where the file is located and its name"),"okok")$res
+    "\nBy pressing 'Ok' you agree to be aware about where the file is located and its name"),"okcancel")$res
 
-  if(res=="cancel"){
-    dlg_message("The information will be displayed again. Read carefully and press 'Ok'")
+    if(res=="cancel"){
+      dlg_message("The information will be displayed again. Read carefully and press 'Ok'")
+    }else{
+      cond <- 0
+    }
   }
 
 
