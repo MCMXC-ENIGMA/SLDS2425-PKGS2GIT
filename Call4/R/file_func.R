@@ -1230,7 +1230,7 @@ make_exam_gui <- function(){
 
   for(i in 1:limit){
     name <- dlg_input("Name")$res
-     if(!length(name) & (i==limit)){
+     if(!length(name) | (i==limit)){
         stop("Exceeded maximum number of attempts to input a valid value\n")
      } else {
       next
