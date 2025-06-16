@@ -1221,7 +1221,7 @@ make_exam_gui <- function(){
     name <- dlg_input("Name")$res
     if (!length(name)){
       #name <- dlg_input("Name")$res
-        if(cnt>limit)
+        if(cnt>=limit)
           stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
     ctrl <- 0
