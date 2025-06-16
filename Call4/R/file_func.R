@@ -1256,8 +1256,7 @@ make_exam_gui <- function(){
     ), "yesno")$res
 
     if(check_point=="no"){
-      print("You are going to be asked to input your data again")
-      Sys.sleep(1)
+        dlg_message("You are going to be asked to input your data again") 
     }else{
       break
     }
