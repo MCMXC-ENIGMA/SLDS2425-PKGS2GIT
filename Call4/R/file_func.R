@@ -1312,7 +1312,7 @@ make_exam_gui <- function(){
      }
   }
 
-  dlg_message(cat("Exam successfully created. The file is in folder\n",getwd())) 
+  dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
 
 }
 
