@@ -1271,10 +1271,11 @@ make_exam_gui <- function(){
     getwd(),
     "\nThe file name will be\n",
       file_name,
-    "\nBy pressing 'Ok' you agree to be aware about where the file is located and its name"),"okcancel")$res
+    "\nBy pressing 'Ok' you agree to be aware about where the file is located and its name"),"okok")$res
 
-  if(res=="cancel")
-    stop("You have to press 'Ok'. Run the function again and follow the steps")
+  if(res=="cancel"){
+    dlg_message("The information will be displayed again. Read carefully and press 'Ok'")
+  }
 
 
 
