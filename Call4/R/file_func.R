@@ -1217,17 +1217,27 @@ make_exam_gui <- function(){
   #Name
   ctrl <- cnt <- 1
   limit <- 2
-  while(ctrl){
+  # while(ctrl){
+  #   name <- dlg_input("Name")$res
+  #   if (!length(name)){
+  #       if(cnt>=limit)
+  #         stop("Exceeded maximum number of attempts to input a valid value\n")
+  #   } else {
+  #   ctrl <- 0
+  #   }
+  #   cnt <- cnt + 1
+  # }
+
+  for(i in 1:limit){
     name <- dlg_input("Name")$res
-    if (!length(name)){
-      #name <- dlg_input("Name")$res
-        if(cnt>=limit)
-          stop("Exceeded maximum number of attempts to input a valid value\n")
-    } else {
-    ctrl <- 0
-    }
-    cnt <- cnt + 1
+     if(!length(name) & (i==limit)){
+        stop("Exceeded maximum number of attempts to input a valid value\n")
+     } else {
+      next
+     }
   }
+
+
   #Surname
   ctrl <- cnt <- 1
   while(ctrl){
