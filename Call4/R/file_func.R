@@ -1214,20 +1214,9 @@ make_exam_gui <- function(){
   act_psswd <- "shunt"
   locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
 
-  #Name
-  ctrl <- cnt <- 1
   limit <- 2
-  # while(ctrl){
-  #   name <- dlg_input("Name")$res
-  #   if (!length(name)){
-  #       if(cnt>=limit)
-  #         stop("Exceeded maximum number of attempts to input a valid value\n")
-  #   } else {
-  #   ctrl <- 0
-  #   }
-  #   cnt <- cnt + 1
-  # }
-
+  for(j in 1:limit){
+  #Name
   for(i in 1:limit){
     name <- dlg_input("Name")$res
      if(length(name)>0){
@@ -1237,33 +1226,25 @@ make_exam_gui <- function(){
         stop("Exceeded maximum number of attempts to input a valid value\n")
      }
   }
-
-
   #Surname
-  ctrl <- cnt <- 1
-  while(ctrl){
+  for(i in 1:limit){
     surname <- dlg_input("Surname")$res
-    if (!length(surname)){
-      #surname <- dlg_input("Surname")$res
-        if(cnt>=limit)
-          stop("Exceeded maximum number of attempts to input a valid value\n")
-    } else {
-      ctrl <- 0
-    }
-    cnt <- cnt + 1
+     if(length(surname)>0){
+        break
+     }else{
+      if(i==limit)
+        stop("Exceeded maximum number of attempts to input a valid value\n")
+     }
   }
   #Matriculation
-  ctrl <- cnt <- 1
-  while(ctrl){
+  for(i in 1:limit){
     mn <- dlg_input("Matriculation number")$res
-    if (!length(mn)){
-      #mn <- dlg_input("Matriculation number")$res
-      if(cnt>=limit)
+     if(length(mn)>0){
+        break
+     }else{
+      if(i==limit)
         stop("Exceeded maximum number of attempts to input a valid value\n")
-    } else {
-      ctrl <- 0
-    }
-    cnt <- cnt + 1
+     }
   }
 
 
@@ -1274,9 +1255,15 @@ make_exam_gui <- function(){
     "Is all correct?"
     ), "yesno")$res
 
-    if(check_point=="no")
-      stop("Run the function again to input correct values")
+    if(check_point=="no"){
+      print("You are going to be asked to input your data again")
+      Sys.sleep(1)
+    }else{
+      break
+    }
   
+  }
+
 
   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
 
