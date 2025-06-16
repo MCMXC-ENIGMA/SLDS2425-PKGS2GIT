@@ -1223,7 +1223,7 @@ make_exam_gui <- function(){
   while(ctrl){
     name <- dlg_input("Name")$res
     if (!length(name)){
-      name <- dlg_input("Name")$res
+      #name <- dlg_input("Name")$res
         if(cnt>limit)
           stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
@@ -1236,7 +1236,7 @@ make_exam_gui <- function(){
   while(ctrl){
     surname <- dlg_input("Surname")$res
     if (!length(surname)){
-      surname <- dlg_input("Surname")$res
+      #surname <- dlg_input("Surname")$res
         if(cnt>limit)
           stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
@@ -1249,7 +1249,7 @@ make_exam_gui <- function(){
   while(ctrl){
     mn <- dlg_input("Matriculation number")$res
     if (!length(mn)){
-      mn <- dlg_input("Matriculation number")$res
+      #mn <- dlg_input("Matriculation number")$res
       if(cnt>limit)
         stop("Exceeded maximum number of attempts to input a valid value\n")
     } else {
@@ -1289,7 +1289,7 @@ make_exam_gui <- function(){
   while(ctrl){
     psswd <- dlg_input("Password")$res
     if (psswd!=act_psswd){
-      psswd <- dlg_input("Password")$res
+      #psswd <- dlg_input("Password")$res
       if(cnt>limit)
         stop("Exceeded maximum number of attempts to input the correct password\n")
     } else {
