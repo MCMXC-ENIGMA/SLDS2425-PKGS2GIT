@@ -1208,9 +1208,6 @@ make_exam <- function(name, surname, matriculation_number){
 
 
 
-
-
-
 make_exam_gui <- function(){
 
   require(svDialogs)
@@ -1298,4 +1295,9 @@ make_exam_gui <- function(){
     }
     cnt <- cnt + 1
   }
+}
+
+
+slds.exam <- function(){
+  make_exam_gui()
 }

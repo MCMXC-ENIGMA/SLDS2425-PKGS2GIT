@@ -6,6 +6,6 @@ export(
 			"FTail",
 			"normTail",
 			"inference",
-			"make_exam_gui"
+			"slds.exam"
 		
 )
