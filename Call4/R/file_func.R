@@ -1285,19 +1285,35 @@ make_exam_gui <- function(){
 
 
   #Password
-  ctrl <- cnt <- 1
-  while(ctrl){
+  # ctrl <- cnt <- 1
+  # while(ctrl){
+  #   psswd <- dlg_input("Password")$res
+  #   if (psswd!=act_psswd){
+  #     #psswd <- dlg_input("Password")$res
+  #     if(cnt>=limit)
+  #       stop("Exceeded maximum number of attempts to input the correct password\n")
+  #   } else {
+  #     out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
+  #     ctrl <- 0
+  #   }
+  #   cnt <- cnt + 1
+  # }
+
+
+  #Password
+  for(i in 1:limit){
     psswd <- dlg_input("Password")$res
-    if (psswd!=act_psswd){
-      #psswd <- dlg_input("Password")$res
-      if(cnt>=limit)
-        stop("Exceeded maximum number of attempts to input the correct password\n")
-    } else {
-      out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
-      ctrl <- 0
-    }
-    cnt <- cnt + 1
+     if((length(psswd)>0) & (psswd==act_psswd)){
+        out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
+        break
+     }else{
+      if(i==limit)
+        stop("Exceeded maximum number of attempts to input a valid value\n")
+     }
   }
+
+  dlg_message(cat("Exam successfully created. The file is in folder\n",getwd())) 
+
 }
 
 
