@@ -1175,34 +1175,34 @@ normTail <- function(m=0, s=1, L=NULL, U=NULL, M=NULL, df=1000, curveColor=1, bo
 
 
 
-exam_text <- function(name, surname, matriculation_number){
+# exam_text <- function(name, surname, matriculation_number){
   
-  locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
-  file_name <- paste(name, surname, matriculation_number, sep="_")
+#   locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
+#   file_name <- paste(name, surname, matriculation_number, sep="_")
 
 
-  paste0(cat("Review your data \n\n"))
-  cat(" Name: ", sprintf(name),"\n")
-  cat(" Surname: ", sprintf(surname),"\n")
-  cat(" Matriculation Number: ", sprintf(matriculation_number),"\n\n")
+#   paste0(cat("Review your data \n\n"))
+#   cat(" Name: ", sprintf(name),"\n")
+#   cat(" Surname: ", sprintf(surname),"\n")
+#   cat(" Matriculation Number: ", sprintf(matriculation_number),"\n\n")
 
-  invisible(readline(prompt=cat("If correct press [enter]\notherwise press  [esc]")))
-
-
-  paste0(cat("Exam text will be saved in directory \n\n"))
-  cat("  ",sprintf(getwd()),"\n\n")
-  paste0(cat("File name \n\n"))
-  cat("  ",sprintf(paste0(file_name,".Rmd")),"\n\n")
-  invisible(readline(prompt=cat("By pressing [enter]\nyou agree to be aware about where the file is located and its name")))
-
-  out <- file.copy(locate_text, paste0(getwd(), "/",file_name, ".Rmd"))
-
-}
+#   invisible(readline(prompt=cat("If correct press [enter]\notherwise press  [esc]")))
 
 
-make_exam <- function(name, surname, matriculation_number){
-  exam_text(name, surname, matriculation_number)
-}
+#   paste0(cat("Exam text will be saved in directory \n\n"))
+#   cat("  ",sprintf(getwd()),"\n\n")
+#   paste0(cat("File name \n\n"))
+#   cat("  ",sprintf(paste0(file_name,".Rmd")),"\n\n")
+#   invisible(readline(prompt=cat("By pressing [enter]\nyou agree to be aware about where the file is located and its name")))
+
+#   out <- file.copy(locate_text, paste0(getwd(), "/",file_name, ".Rmd"))
+
+# }
+
+
+# make_exam <- function(name, surname, matriculation_number){
+#   exam_text(name, surname, matriculation_number)
+# }
 
 
 
@@ -1282,24 +1282,6 @@ make_exam_gui <- function(){
     }
   }
 
-
-
-  #Password
-  # ctrl <- cnt <- 1
-  # while(ctrl){
-  #   psswd <- dlg_input("Password")$res
-  #   if (psswd!=act_psswd){
-  #     #psswd <- dlg_input("Password")$res
-  #     if(cnt>=limit)
-  #       stop("Exceeded maximum number of attempts to input the correct password\n")
-  #   } else {
-  #     out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
-  #     ctrl <- 0
-  #   }
-  #   cnt <- cnt + 1
-  # }
-
-
   #Password
   for(i in 1:limit){
     psswd <- dlg_input("Password")$res
@@ -1325,4 +1307,212 @@ slds.exam <- function(){
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage("This is version ", packageVersion(pkgname), 
                         " of ", pkgname)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+my.fun <- function(matricola){
+  set.seed(matricola)
+
+  n <- 20
+  beta0 <- runif(1, -1/2, 1/2)
+  beta1 <- runif(1, -1/2, 1/2)
+
+  x <- sample(1:2,n, replace=TRUE)
+  x.mat <- ifelse(x==1,0,1)
+
+
+  linpred <- as.vector(cbind(1,x.mat)%*%c(beta0, beta1))
+  pr <- exp(linpred) / (1 + exp(linpred))
+  y <- rbinom(n, 1, pr)
+  x <- ifelse(x==1, "wheat", "whole wheat")
+  flavour <- as.factor(x)
+  pasta <- as.factor(ifelse(y==0, "Fresh Noodles","Fresh Cut Pasta"))
+
+  fit <- glm(pasta~flavour, family=binomial)
+
+  list(model=fit, covariate=x, response=y)#, residuals=resid(fit))
+}
+
+
+vltr.fun <- function(matricola){
+  out <- my.fun(matricola)
+  print(MY.summary.glm(out$model))
+  list(pasta=out$response, flavour=out$covariate)
+}
+
+
+
+my.fun2 <- function(matricola, data){
+  set.seed(matricola)
+  n <- nrow(data)
+  ids <- sample(1:n, 1e3)
+  data.sub <- data[ids,]
+
+  tab1 <- prop.table(table(data.sub$active_cust, data.sub$Num_complaints),2)
+  tab2 <- prop.table(table(data.sub$active_cust, data.sub$Num_complaints),1)
+
+  if(sample(0:1,1)){
+
+      print("Table 1")
+      print(tab1)
+      cat("\n\n")
+      print("Table 2")
+      print(tab2)
+
+    }else{
+
+      print("Table 1")
+      print(tab2)
+      cat("\n\n")
+      print("Table 2")
+      print(tab1)
+
+    }
+}
+
+
+vltr.fun2 <- function(matricola, data){
+  my.fun2(matricola, data)
+}
+
+
+
+
+
+
+my.fun3 <- function(matricola, data){
+
+  n <- sample(1e4:2e4,1)
+  n3 <- round(n/3)
+  n23 <- round(n3*2/3)
+  n13 <- round(n3*1/10)
+
+
+  whc <- sample(c("TRUE", "FALSE"),1)
+  m <- matrix(c(n3,n23,n13,n3-sample(5e1:1e2,1)),2,2, byrow=whc)
+  colnames(m) <- rownames(m) <- c(0,1)
+  
+  print(m)
+
+}
+
+
+vltr.fun3 <- function(matricola, data){
+  my.fun3(matricola, data)
+}
+
+
+
+
+slds.fun <- function(matricola, id, data=NULL){
+
+  if(id==1)
+    out <- vltr.fun(matricola)
+
+  if(id==2)
+    out <- vltr.fun2(matricola, data)
+
+  if(id==3)
+    out <- vltr.fun3(matricola, data)
+
+    invisible(out)
+}
+
+
+
+
+
+
+
+
+
+
+MY.summary.glm <- function (object, dispersion = NULL, correlation = FALSE, symbolic.cor = FALSE, 
+    ...) 
+{
+    est.disp <- FALSE
+    df.r <- object$df.residual
+    if (is.null(dispersion)) {
+        fam <- object$family
+        dispersion <- if (!is.null(fam$dispersion) && !is.na(fam$dispersion)) 
+            fam$dispersion
+        else if (fam$family %in% c("poisson", "binomial")) 
+            1
+        else if (df.r > 0) {
+            est.disp <- TRUE
+            if (any(object$weights == 0)) 
+                warning("observations with zero weight not used for calculating dispersion")
+            sum((object$weights * object$residuals^2)[object$weights > 
+                0])/df.r
+        }
+        else {
+            est.disp <- TRUE
+            NaN
+        }
+    }
+    aliased <- is.na(coef(object))
+    p <- object$rank
+    if (p > 0) {
+        p1 <- 1L:p
+        Qr <- stats:::qr.lm(object)
+        coef.p <- object$coefficients[Qr$pivot[p1]]
+        covmat.unscaled <- chol2inv(Qr$qr[p1, p1, drop = FALSE])
+        dimnames(covmat.unscaled) <- list(names(coef.p), names(coef.p))
+        covmat <- dispersion * covmat.unscaled
+        var.cf <- diag(covmat)
+        s.err <- sqrt(var.cf)
+        tvalue <- coef.p/s.err
+        dn <- c("Estimate", "Std. Error")
+        if (!est.disp) {
+            pvalue <- 2 * pnorm(-abs(tvalue))
+              pvalue <- rep(NA, length(pvalue))
+            coef.table <- cbind(coef.p, s.err, tvalue, pvalue)
+            dimnames(coef.table) <- list(names(coef.p), c(dn, 
+                "z value", "Pr(>|z|)"))
+        }
+        else if (df.r > 0) {
+            pvalue <- 2 * pt(-abs(tvalue), df.r)
+              pvalue <- rep(NA, length(pvalue))
+            coef.table <- cbind(coef.p, s.err, tvalue, pvalue)
+            dimnames(coef.table) <- list(names(coef.p), c(dn, 
+                "t value", "Pr(>|t|)"))
+        }
+        else {
+            coef.table <- cbind(coef.p, NaN, NaN, NaN)
+            dimnames(coef.table) <- list(names(coef.p), c(dn, 
+                "t value", "Pr(>|t|)"))
+        }
+        df.f <- NCOL(Qr$qr)
+    }
+    else {
+        coef.table <- matrix(, 0L, 4L)
+        dimnames(coef.table) <- list(NULL, c("Estimate", "Std. Error", 
+            "t value", "Pr(>|t|)"))
+        covmat.unscaled <- covmat <- matrix(, 0L, 0L)
+        df.f <- length(aliased)
+    }
+    keep <- match(c("call", "terms", "family", "deviance", "aic", 
+        "contrasts", "df.residual", "null.deviance", "df.null", 
+        "iter", "na.action"), names(object), 0L)
+    ans <- c(object[keep], list(deviance.resid = residuals(object, 
+        type = "deviance"), coefficients = coef.table, aliased = aliased, 
+        dispersion = dispersion, df = c(object$rank, df.r, df.f), 
+        cov.unscaled = covmat.unscaled, cov.scaled = covmat))
+    if (correlation && p > 0) {
+        dd <- sqrt(diag(covmat.unscaled))
+        ans$correlation <- covmat.unscaled/outer(dd, dd)
+        ans$symbolic.cor <- symbolic.cor
+    }
+    class(ans) <- "summary.glm"
+    return(ans)
 }
