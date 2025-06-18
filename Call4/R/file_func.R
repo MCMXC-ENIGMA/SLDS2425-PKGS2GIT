@@ -1334,7 +1334,7 @@ my.fun <- function(matricola){
   linpred <- as.vector(cbind(1,x.mat)%*%c(beta0, beta1))
   pr <- exp(linpred) / (1 + exp(linpred))
   y <- rbinom(n, 1, pr)
-  x <- ifelse(x==1, "wheat", "whole wheat")
+  x <- ifelse(x==1, " wheat", " whole wheat")
   flavour <- as.factor(x)
   pasta <- as.factor(ifelse(y==0, "Fresh Noodles","Fresh Cut Pasta"))
 
