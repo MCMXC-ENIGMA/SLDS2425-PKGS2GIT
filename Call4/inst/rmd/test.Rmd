@@ -29,7 +29,7 @@ print("done")
 
 data(beer)
 glimpse(beer)
-data(fiberbits)
-glimpse(fiberbits)
+data(leukemia)
+glimpse(leukemia)
 rm(list=ls())
 ```
