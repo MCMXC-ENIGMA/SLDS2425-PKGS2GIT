@@ -1305,6 +1305,7 @@ make_exam_gui <- function(){
         print(out)
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
+          dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
           break
         }
       }else{
@@ -1314,7 +1315,6 @@ make_exam_gui <- function(){
    }
 
 
-  dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
 
 }
 
