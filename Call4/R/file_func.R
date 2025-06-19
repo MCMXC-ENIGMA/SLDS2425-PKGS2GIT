@@ -1372,31 +1372,39 @@ vltr.fun <- function(matricola){
 
 
 my.fun2 <- function(matricola, data){
+
+  require()
   set.seed(matricola)
-  n <- nrow(data)
-  ids <- sample(1:n, 1e3)
-  data.sub <- data[ids,]
 
-  tab1 <- prop.table(table(data.sub$active_cust, data.sub$Num_complaints),2)
-  tab2 <- prop.table(table(data.sub$active_cust, data.sub$Num_complaints),1)
+  Y <- data.frame(data[,1])
+  X <- data.frame(data[,-1])
 
-  if(sample(0:1,1)){
+  ids <- sample(1:nrow(X),2, replace=FALSE)
+  vrs <- names(X)[ids]
 
-      print("Table 1")
-      print(tab1)
-      cat("\n\n")
-      print("Table 2")
-      print(tab2)
+  lam <- sample(1:4,1)
+  b1 <- seq(-lam, lam, .01)
+  b2 <- lam - abs(b1)
+  plot(b1, b2, ylim = c(-10, 10), xlim = c(-10, 10), type = 'l', axes=F, xlab=vrs[1], ylab=vrs[2])
+  axis(1, at=-10:10, labels=-10:10)
+  axis(2, at=-10:10, labels=-10:10)
+  b2 <- -b2
+  lines(b1, b2)
+  draw.circle(0,0,lam)
 
-    }else{
+  e1 <- runif(1,lam, lam*2)
+  e2 <- runif(1,-2*lam, -lam)
+  swap <- sample(0:1,1)
+  
+  if(swap){
+    e1.tmp <- e1
+    e1 <- e2
+    e2 <- e1.tmp
+  }
 
-      print("Table 1")
-      print(tab2)
-      cat("\n\n")
-      print("Table 2")
-      print(tab1)
+  list(v1=vrs[1], v2=vrs[2], e1=e1, e2=e2, pen=lam)
 
-    }
+
 }
 
 
