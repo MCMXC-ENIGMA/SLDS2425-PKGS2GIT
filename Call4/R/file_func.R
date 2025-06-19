@@ -1312,10 +1312,6 @@ make_exam_gui <- function(){
     }
     if(i==limit)
       dlg_message(c("Exam not created","Exceeded maximum number of attempts to input the correct password","Run the function again"))  
-   }
-
-
-
 }
 
 
