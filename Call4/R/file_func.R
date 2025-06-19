@@ -1302,7 +1302,6 @@ make_exam_gui <- function(){
          out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE)
-        print(out)
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
           dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
@@ -1311,7 +1310,7 @@ make_exam_gui <- function(){
       }
     }
     if(i==limit)
-      dlg_message(c("Exam not created","Exceeded maximum number of attempts to input the correct password","Run the function again"))  
+      dlg_message(c("Exam not created\n","Exceeded maximum number of attempts to input the correct password\n","Run the function again"))  
 }
 
 
