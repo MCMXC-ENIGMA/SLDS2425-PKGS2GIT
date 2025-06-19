@@ -1300,7 +1300,7 @@ make_exam_gui <- function(){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
          out <- system(command = 
-          paste0("unzip -d", getwd(), "-o -P ", psswd, " ", locate_text), 
+          paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE)
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
