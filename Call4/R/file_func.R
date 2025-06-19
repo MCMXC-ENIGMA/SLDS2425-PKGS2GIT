@@ -1299,7 +1299,7 @@ make_exam_gui <- function(){
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
-         suppresMessages(out <- system(command = 
+         suppressMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
          if(out==0){
