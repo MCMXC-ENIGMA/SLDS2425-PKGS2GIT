@@ -1213,7 +1213,7 @@ make_exam_gui <- function(){
   require(svDialogs)
   #act_psswd <- "shunt"
   #locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
-  locate_text <- system.file("zip", "slds_call.zip", package = "SLDS2425")
+  locate_text <- system.file("rmd", "slds_call.zip", package = "SLDS2425")
 
   limit <- 2
   for(j in 1:limit){
@@ -1302,9 +1302,10 @@ make_exam_gui <- function(){
          out <- system(command = 
           paste0("unzip -d", getwd(), "-o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE)
-         #out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
-         if(out==0)
+         if(out==0){
+          file.rename("Exam_Call.Rmd",file_name)
           break
+        }
       }else{
        if(i==limit)
          stop("Exceeded maximum number of attempts to input a valid value\n")
