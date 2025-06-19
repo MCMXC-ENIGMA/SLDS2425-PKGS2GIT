@@ -152,60 +152,6 @@ Do not modify this chunk.
 library(SLDS2425)
 data(leukemia)
 out <- slds.fun(matricola, 2, leukemia)
+out
 ```
 
-A Lasso regression model has been fit to the data. The best fit includes just two covariates, not including the intercept, and the estimated coefficients are
-
-  * paste0(`r out$v1`,"=", `r out$e1`)
-  * paste0(`r out$v2`,"=", `r out$e2`)
-
-Argue whether the value of the penalty parameter equal to `r out$pen` allows to get the given estimates (just text, no code needed)
-  
-**Your answer**:
-In a Lasso regression the constraint the parameters, excluding the intercept, must satisfy is
-$$
-\sum_{j=1}^p |\beta_j|\leq\lambda
-$$
-where $\beta_j$ is the parameter associated to covariate $X_j$ and $\lambda$ is the penalty tuning parameter in the Lasso regression. Since `r abs(out$e1)+abs(out$e2)` is ?? than `r out$pen` we have that ???
-
-## (b) 
-Consider the variables `r out$v1` and `r out$v2`. Discuss whether or not the variables should be standardized prior to fit a Lasso regression model. You can use both code and text. Motivate your answer
-
-```{r echo=TRUE}
-library(SLDS2425)
-data(fiberbits)
-slds.fun(matricola, 3, fiberbits)
-```
-
-**Your answer**:
-```{r echo=TRUE}
-
-```
-
-## (c)
-Split the data set into a  traning and test data sets. Estimate a statistical model for **the chance of a customer leaving** by using shrinkage methods. Select the best model according to a suitable criteria. 
-
-**Your answer**:
-```{r echo=TRUE}
-
-```
-
-## (d)
-Build a classifier to identify the customers who are most likely to quit. Compare the performance of the classifier, using suitable metrics, with the classifier considered in point (b). Comment on the results.
-
-**Your answer**:
-```{r echo=TRUE}
-
-```
-
-
-# Session Info
-
-Do not modify the chunk below
-```{r}
-Sys.info()
-#last compiled
-date()
-#student info
-paste(name, surname, "-", matricola, sep=" ")
-```

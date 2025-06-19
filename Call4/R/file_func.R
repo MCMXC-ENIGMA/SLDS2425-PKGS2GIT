@@ -1381,7 +1381,7 @@ my.fun2 <- function(matricola, data){
   ids <- sample(1:nrow(X),2, replace=FALSE)
   vrs <- names(X)[ids]
 
-  # lam <- sample(1:4,1)
+   lam <- sample(1:4,1)
   # b1 <- seq(-lam, lam, .01)
   # b2 <- lam - abs(b1)
   # plot(b1, b2, ylim = c(-10, 10), xlim = c(-10, 10), type = 'l', axes=F, xlab=vrs[1], ylab=vrs[2])
