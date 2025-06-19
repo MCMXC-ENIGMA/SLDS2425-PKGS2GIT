@@ -1299,9 +1299,9 @@ make_exam_gui <- function(){
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
-         out <- system(command = 
+         suppresMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
-          wait = TRUE, ignore.stdout = TRUE)
+          wait = TRUE, ignore.stdout = TRUE))
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
           dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
