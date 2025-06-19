@@ -1308,10 +1308,10 @@ make_exam_gui <- function(){
           dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
           break
         }
-      }else{
-       if(i==limit)
-         stop("Exceeded maximum number of attempts to input a valid value\n")
       }
+    }
+    if(i==limit)
+      dlg_message(c("Exam not created","Exceeded maximum number of attempts to input the correct password","Run the function again"))  
    }
 
 
