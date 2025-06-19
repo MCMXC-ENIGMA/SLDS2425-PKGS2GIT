@@ -1302,6 +1302,7 @@ make_exam_gui <- function(){
          out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE)
+        print(out)
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
           break
