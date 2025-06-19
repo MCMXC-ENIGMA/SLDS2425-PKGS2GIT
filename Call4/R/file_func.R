@@ -1210,7 +1210,7 @@ normTail <- function(m=0, s=1, L=NULL, U=NULL, M=NULL, df=1000, curveColor=1, bo
 
 make_exam_gui <- function(){
 
-  require(svDialogs)
+  suppressWarnings(suppressMessages(require(svDialogs)))
   #act_psswd <- "shunt"
   #locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
   locate_text <- system.file("rmd", "slds_call.zip", package = "SLDS2425")
