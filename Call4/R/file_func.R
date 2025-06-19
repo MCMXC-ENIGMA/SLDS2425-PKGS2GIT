@@ -1211,8 +1211,9 @@ normTail <- function(m=0, s=1, L=NULL, U=NULL, M=NULL, df=1000, curveColor=1, bo
 make_exam_gui <- function(){
 
   require(svDialogs)
-  act_psswd <- "shunt"
-  locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
+  #act_psswd <- "shunt"
+  #locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
+  locate_text <- system.file("zip", "slds_call.zip", package = "SLDS2425")
 
   limit <- 2
   for(j in 1:limit){
@@ -1283,16 +1284,33 @@ make_exam_gui <- function(){
   }
 
   #Password
-  for(i in 1:limit){
-    psswd <- dlg_input("Password")$res
-     if((length(psswd)>0) & (psswd==act_psswd)){
-        out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
-        break
-     }else{
-      if(i==limit)
-        stop("Exceeded maximum number of attempts to input a valid value\n")
-     }
-  }
+  # for(i in 1:limit){
+  #   psswd <- dlg_input("Password")$res
+  #    if((length(psswd)>0) & (psswd==act_psswd)){
+  #       out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
+  #       break
+  #    }else{
+  #     if(i==limit)
+  #       stop("Exceeded maximum number of attempts to input a valid value\n")
+  #    }
+  # }
+
+
+   for(i in 1:limit){
+     psswd <- dlg_input("Password")$res
+      if(length(psswd)>0){
+         out <- system(command = 
+          paste0("unzip -d", getwd(), "-o -P ", psswd, " ", locate_text), 
+          wait = TRUE, ignore.stdout = TRUE)
+         #out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
+         if(out==0)
+          break
+      }else{
+       if(i==limit)
+         stop("Exceeded maximum number of attempts to input a valid value\n")
+      }
+   }
+
 
   dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
 
