@@ -30,6 +30,9 @@ print("done")
 data(beer)
 glimpse(beer)
 data(leukemia)
-glimpse(leukemia)
+#glimpse(leukemia)
+leukemia %>%
+  glimpse() %>%
+  select(1:3)
 rm(list=ls())
 ```
