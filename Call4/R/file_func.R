@@ -1373,7 +1373,6 @@ vltr.fun <- function(matricola){
 
 my.fun2 <- function(matricola, data){
 
-  require()
   set.seed(matricola)
 
   Y <- data.frame(data[,1])
@@ -1382,15 +1381,15 @@ my.fun2 <- function(matricola, data){
   ids <- sample(1:nrow(X),2, replace=FALSE)
   vrs <- names(X)[ids]
 
-  lam <- sample(1:4,1)
-  b1 <- seq(-lam, lam, .01)
-  b2 <- lam - abs(b1)
-  plot(b1, b2, ylim = c(-10, 10), xlim = c(-10, 10), type = 'l', axes=F, xlab=vrs[1], ylab=vrs[2])
-  axis(1, at=-10:10, labels=-10:10)
-  axis(2, at=-10:10, labels=-10:10)
-  b2 <- -b2
-  lines(b1, b2)
-  draw.circle(0,0,lam)
+  # lam <- sample(1:4,1)
+  # b1 <- seq(-lam, lam, .01)
+  # b2 <- lam - abs(b1)
+  # plot(b1, b2, ylim = c(-10, 10), xlim = c(-10, 10), type = 'l', axes=F, xlab=vrs[1], ylab=vrs[2])
+  # axis(1, at=-10:10, labels=-10:10)
+  # axis(2, at=-10:10, labels=-10:10)
+  # b2 <- -b2
+  # lines(b1, b2)
+  
 
   e1 <- runif(1,lam, lam*2)
   e2 <- runif(1,-2*lam, -lam)
