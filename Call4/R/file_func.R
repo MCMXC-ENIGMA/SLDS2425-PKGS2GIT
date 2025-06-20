@@ -1283,6 +1283,19 @@ make_exam_gui <- function(){
     }
   }
 
+  PATTERNS <- list("matricola <- ",
+          "\\<name\\ <- ",
+          "\\<surname\\ <- ")
+
+  STRINGS <- list("matricola <- ",
+          "name <- ",
+          "surname <- ")
+
+  name <- paste0("'", name,"'")
+  surname <- paste0("'", surname,"'")
+  STRING2SUB <- list(mn, name, surname)
+
+
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
@@ -1291,7 +1304,18 @@ make_exam_gui <- function(){
           wait = TRUE, ignore.stdout = TRUE))
          if(out==0){
           file.rename("Exam_Call.Rmd",file_name)
+
+          #write info into Rmd file
+          for(j in 1:length(PATTERNS)){
+            tx  <- readLines(file_name)
+            tx2  <- gsub(pattern = PATTERNS[[j]], 
+                   replace = paste0(STRINGS[[j]], STRING2SUB[[j]]), x = tx)
+            writeLines(tx2, con=file_name)
+          }
+
+
           dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
+
           break
         }
       }
