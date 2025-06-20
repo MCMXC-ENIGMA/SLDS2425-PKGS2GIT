@@ -1219,7 +1219,7 @@ make_exam_gui <- function(){
   for(j in 1:limit){
   #Name
   for(i in 1:limit){
-    name <- dlg_input("Name")$res
+    name <- dlg_input("First name")$res
      if(length(name)>0){
         break
      }else{
@@ -1283,19 +1283,6 @@ make_exam_gui <- function(){
     }
   }
 
-  #Password
-  # for(i in 1:limit){
-  #   psswd <- dlg_input("Password")$res
-  #    if((length(psswd)>0) & (psswd==act_psswd)){
-  #       out <- file.copy(locate_text, paste0(getwd(), "/",file_name))
-  #       break
-  #    }else{
-  #     if(i==limit)
-  #       stop("Exceeded maximum number of attempts to input a valid value\n")
-  #    }
-  # }
-
-
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
@@ -1308,8 +1295,9 @@ make_exam_gui <- function(){
           break
         }
       }
+
     }
-    if(i==limit)
+    if((i==limit) & (out!=0))
       dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
 }
 
