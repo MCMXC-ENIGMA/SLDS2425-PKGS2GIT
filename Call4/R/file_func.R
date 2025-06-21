@@ -1303,15 +1303,17 @@ make_exam_gui <- function(){
          suppressMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
-print("DINOOOOOO")
          if(out==0){
           check <- file.exists(file_name)
-          print("SAUROOOOOO")
-            print(check)
           if(check){
             check_over <- dlg_message(c("A file with the same name exist",
             "Do you want to overwrite it? All changes will be lost"
             ), "yesno")$res
+            if(check_over=="no"){
+              dlg_message("Deal with the existing file and run the function again.") 
+              break
+            }
+
           }else{
             file.rename("Exam_Call.Rmd",file_name)
           }
@@ -1327,12 +1329,11 @@ print("DINOOOOOO")
           }
 
 
-          dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
-          file.edit(file_name)
-          dlg_message("File automatically opened in Rstudio\n")
-
-          break
-        }#end out==0
+            dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
+            file.edit(file_name)
+            dlg_message("File automatically opened in Rstudio\n")
+            break
+          }#end out==0
         }else{
           dlg_message("Deal with the existing file and run the function again.")  
         }
