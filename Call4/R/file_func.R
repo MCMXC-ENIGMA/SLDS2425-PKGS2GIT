@@ -1305,6 +1305,7 @@ make_exam_gui <- function(){
 
          if(out==0){
           check <- file.exists(file_name)
+            print(check)
           if(check){
             check_over <- dlg_message(c("A file with the same name exist",
             "Do you want to overwrite it? All changes will be lost"
