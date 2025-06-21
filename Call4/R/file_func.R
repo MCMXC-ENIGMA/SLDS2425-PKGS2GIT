@@ -1296,6 +1296,7 @@ make_exam_gui <- function(){
   STRING2SUB <- list(mn, name, surname)
 
 
+
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
