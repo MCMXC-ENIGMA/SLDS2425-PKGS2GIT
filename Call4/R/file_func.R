@@ -1315,6 +1315,8 @@ make_exam_gui <- function(){
 
 
           dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
+          file.edit(file_name)
+          dlg_message("File automatically opened in Rstudio\n")
 
           break
         }
