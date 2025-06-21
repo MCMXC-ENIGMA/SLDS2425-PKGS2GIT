@@ -10,7 +10,7 @@ inst.libs <- function(pkgs=NULL){
      need <- libs[req==FALSE]
      if(length(need)>0){ 
          install.packages(need, repos="https://cloud.r-project.org")
-         ret <- lapply(need, require,character.only=TRUE, quietly=TRUE)
+         suppressWarnings(suppressMessages(ret <- lapply(need, require, character.only=TRUE, quietly=TRUE)))
      }
 
 
