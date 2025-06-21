@@ -1265,7 +1265,7 @@ make_exam_gui <- function(){
   }
 
 
-  file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
+  file_name <- paste0(paste(name, surname, mn, Sys.time(), sep="_"),".Rmd") 
 
   cond <- 1
   while(cond){
@@ -1306,39 +1306,20 @@ make_exam_gui <- function(){
           wait = TRUE, ignore.stdout = TRUE))
 
          if(out==0){
-          check <- file.exists(file_name)
-          check_over <- "no"
-          if(check){
-            check_over <- dlg_message(c("A file with the same name exist",
-            "Do you want to overwrite it? All changes will be lost"
-            ), "yesno")$res
-            if(check_over=="no"){
-              dlg_message("Deal with the existing file and run the function again.") 
-              unlink("Exam_Call.Rmd")
-              break
-            }
-
-          }else{
             file.rename("Exam_Call.Rmd",file_name)
-          }
 
-          if(check==FALSE | (check==TRUE & check_over=="yes") ){
-
-          #write info into Rmd file
-          for(j in 1:length(PATTERNS)){
-            tx  <- readLines(file_name)
-            tx2  <- gsub(pattern = PATTERNS[[j]], 
-                   replace = paste0(STRINGS[[j]], STRING2SUB[[j]]), x = tx)
-            writeLines(tx2, con=file_name)
-          }
+            #write info into Rmd file
+            for(j in 1:length(PATTERNS)){
+              tx  <- readLines(file_name)
+              tx2  <- gsub(pattern = PATTERNS[[j]], 
+                     replace = paste0(STRINGS[[j]], STRING2SUB[[j]]), x = tx)
+              writeLines(tx2, con=file_name)
+            }
             dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
             file.edit(file_name)
             dlg_message("File automatically opened in Rstudio\n")
             break
           }#end out==0
-        }else{
-          dlg_message("Deal with the existing file and run the function again.")  
-        }
       }#end input passwd
     }#end for loop
 
