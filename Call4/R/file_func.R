@@ -1306,6 +1306,7 @@ make_exam_gui <- function(){
          if(out==0){
 
           check <- file.exists(file_name)
+          check_over <- "no"
           if(check){
 
             check_over <- dlg_message(c("A file with the same name exist",
@@ -1321,7 +1322,7 @@ make_exam_gui <- function(){
             file.rename("Exam_Call.Rmd",file_name)
           }
 
-          if(check==FALSE | (check==TRUE & check_over==TRUE) ){
+          if(check==FALSE | (check==TRUE & check_over=="yes") ){
 
           #write info into Rmd file
           for(j in 1:length(PATTERNS)){
