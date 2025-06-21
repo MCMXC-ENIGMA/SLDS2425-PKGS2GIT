@@ -1302,8 +1302,18 @@ make_exam_gui <- function(){
          suppressMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
+
          if(out==0){
-          file.rename("Exam_Call.Rmd",file_name)
+          check <- file.exists(file_name)
+          if(check){
+            check_over <- dlg_message(c("A file with the same name exist",
+            "Do you want to overwrite it? All changes will be lost"
+            ), "yesno")$res
+          }else{
+            file.rename("Exam_Call.Rmd",file_name)
+          }
+
+          if(check==FALSE | (check==TRUE & check_over==TRUE) ){
 
           #write info into Rmd file
           for(j in 1:length(PATTERNS)){
@@ -1319,10 +1329,13 @@ make_exam_gui <- function(){
           dlg_message("File automatically opened in Rstudio\n")
 
           break
+        }#end out==0
+        }else{
+          dlg_message("Deal with the existing file and run the function again.")  
         }
-      }
+      }#end input passwd
+    }#end for loop
 
-    }
     if((i==limit) & (out!=0))
       dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
 }
