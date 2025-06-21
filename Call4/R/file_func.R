@@ -1300,25 +1300,25 @@ make_exam_gui <- function(){
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
+
          suppressMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
-         if(out==0){
 
+         if(out==0){
           check <- file.exists(file_name)
           check_over <- "no"
           if(check){
-
             check_over <- dlg_message(c("A file with the same name exist",
             "Do you want to overwrite it? All changes will be lost"
             ), "yesno")$res
             if(check_over=="no"){
               dlg_message("Deal with the existing file and run the function again.") 
+              unlink("Exam_Call.Rmd")
               break
             }
 
           }else{
-            print("c9a0")
             file.rename("Exam_Call.Rmd",file_name)
           }
 
