@@ -15,7 +15,7 @@ sapply(lst, function(x) require(x))
 
 
 ```{r matricola, error=TRUE, echo=FALSE}
-library(SLDS2425)
+suppressWarnings(suppressMessages(library(SLDS2425)))
 R.version$version.string
 cat("\n")
 print("Package SLDS2425 version")
