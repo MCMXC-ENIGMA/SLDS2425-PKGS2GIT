@@ -1304,8 +1304,10 @@ make_exam_gui <- function(){
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
          if(out==0){
+
           check <- file.exists(file_name)
           if(check){
+
             check_over <- dlg_message(c("A file with the same name exist",
             "Do you want to overwrite it? All changes will be lost"
             ), "yesno")$res
@@ -1315,6 +1317,7 @@ make_exam_gui <- function(){
             }
 
           }else{
+            print("c9a0")
             file.rename("Exam_Call.Rmd",file_name)
           }
 
@@ -1327,8 +1330,6 @@ make_exam_gui <- function(){
                    replace = paste0(STRINGS[[j]], STRING2SUB[[j]]), x = tx)
             writeLines(tx2, con=file_name)
           }
-
-
             dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
             file.edit(file_name)
             dlg_message("File automatically opened in Rstudio\n")
