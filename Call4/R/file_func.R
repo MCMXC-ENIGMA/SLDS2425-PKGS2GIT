@@ -1302,9 +1302,10 @@ make_exam_gui <- function(){
          suppressMessages(out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
-
+print("DINOOOOOO")
          if(out==0){
           check <- file.exists(file_name)
+          print("SAUROOOOOO")
             print(check)
           if(check){
             check_over <- dlg_message(c("A file with the same name exist",
