@@ -1209,7 +1209,7 @@ make_exam_gui <- function(){
 
 
   out <- try(inst.libs())
-  Sys.sleep(5)
+  Sys.sleep(2)
 
   if(!inherits(out, "try-error")){
 
@@ -1278,7 +1278,7 @@ make_exam_gui <- function(){
 
   cond <- 1
   while(cond){
-  res<-dlg_message(
+  res <- dlg_message(
     c("The exam text will be saved in directory\n",
     getwd(),
     "\nThe file name will be\n",
@@ -1291,6 +1291,16 @@ make_exam_gui <- function(){
       cond <- 0
     }
   }
+
+
+  anothercheck <- dlg_message("You are going to get the text of the exam in Rmd format. 
+      That file needs to be suitably modified to answer the questions 
+      and then knitted to produce the .html file required to submit your test. 
+      Be aware that the .Rmd file will be knitted irrespective of errors in 
+      the R code, so it is your responsibility to check painstakingly 
+      what you are submitting.")$res
+
+
 
   PATTERNS <- list("matricola <- ",
           "\\<name\\ <- ",
