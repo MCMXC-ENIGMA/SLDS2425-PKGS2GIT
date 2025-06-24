@@ -1214,8 +1214,8 @@ make_exam_gui <- function(){
   if(!inherits(out, "try-error")){
 
   resout <- dlg_message(
-    c("By pressing 'Ok' you agree that the output matches 
-      the one displayed by the instructors\n"))$res
+    "By pressing 'Ok' you agree that the output matches 
+      the one displayed by the instructors")$res
 
   #if(resout=="ok"){
 
