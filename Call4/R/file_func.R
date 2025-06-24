@@ -1,4 +1,6 @@
 inst.libs <- function(pkgs=NULL){
+
+   out <- try(  
 	 if(is.null(pkgs)){
 	 	pkgs <- c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs")
 	 }else{
@@ -16,7 +18,9 @@ inst.libs <- function(pkgs=NULL){
 
   rmarkdown::render(system.file("rmd", "test.Rmd", package = "SLDS2425"))
   browseURL(system.file("rmd", "test.html", package = "SLDS2425"))
-
+  )
+  out <- ifelse(class(out)!="try-error",1,0)
+  invisible(out)
 }
 
 
@@ -1210,6 +1214,17 @@ normTail <- function(m=0, s=1, L=NULL, U=NULL, M=NULL, df=1000, curveColor=1, bo
 
 make_exam_gui <- function(){
 
+
+  out <- inst.libs()
+
+  if(out){
+
+  resout <- dlg_message(
+    c("By pressing 'Ok' you agree that the output matches 
+      the one displayed by the instructors\n"),"okcancel")$res
+
+  if(resout=="ok"){
+
   suppressWarnings(suppressMessages(require(svDialogs)))
   #act_psswd <- "shunt"
   #locate_text <- system.file("rmd", "Exam_Call_4.Rmd", package = "SLDS2425")
@@ -1325,6 +1340,11 @@ make_exam_gui <- function(){
 
     if((i==limit) & (out!=0))
       dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
+
+    }
+  }else{
+    dlg_input("Run the function again and read the on screen instructions carefully")$res
+  }
 }
 
 
