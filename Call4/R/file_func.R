@@ -1,12 +1,10 @@
 inst.libs <- function(pkgs=NULL){
+   if(is.null(pkgs)){
+  	 	pkgs <- c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs")
+  	 }else{
+  	 	pkgs <- c(pkgs, c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs"))
+  	 }
 
-   out <- try(  
-	 if(is.null(pkgs)){
-	 	pkgs <- c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs")
-	 }else{
-	 	pkgs <- c(pkgs, c("tidyverse", "ISLR", "FNN", "glmnet", "kernlab", "pROC", "openintro", "BHH2", "rmarkdown","remotes","svDialogs"))
-	 }
-	 
      libs <- unlist(list(pkgs))
      suppressWarnings(suppressMessages(req  <- unlist(lapply(libs, require, character.only=TRUE, quietly=TRUE))))
      need <- libs[req==FALSE]
@@ -14,13 +12,8 @@ inst.libs <- function(pkgs=NULL){
          install.packages(need, repos="https://cloud.r-project.org")
          suppressWarnings(suppressMessages(ret <- lapply(need, require, character.only=TRUE, quietly=TRUE)))
      }
-
-
-  rmarkdown::render(system.file("rmd", "test.Rmd", package = "SLDS2425"))
-  browseURL(system.file("rmd", "test.html", package = "SLDS2425"))
-  )
-  out <- ifelse(class(out)!="try-error",1,0)
-  invisible(out)
+    rmarkdown::render(system.file("rmd", "test.Rmd", package = "SLDS2425"))
+    browseURL(system.file("rmd", "test.html", package = "SLDS2425"))
 }
 
 
@@ -1215,9 +1208,10 @@ normTail <- function(m=0, s=1, L=NULL, U=NULL, M=NULL, df=1000, curveColor=1, bo
 make_exam_gui <- function(){
 
 
-  out <- inst.libs()
+  out <- try(inst.libs())
 
-  if(out){
+
+  if(!inherits(out, "try-error"))
 
   resout <- dlg_message(
     c("By pressing 'Ok' you agree that the output matches 
