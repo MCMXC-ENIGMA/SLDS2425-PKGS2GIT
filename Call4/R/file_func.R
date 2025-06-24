@@ -1209,15 +1209,15 @@ make_exam_gui <- function(){
 
 
   out <- try(inst.libs())
-  Sys.sleep(2)
+  Sys.sleep(3.5)
 
   if(!inherits(out, "try-error")){
 
   resout <- dlg_message(
     c("By pressing 'Ok' you agree that the output matches 
-      the one displayed by the instructors\n"),"okcancel")$res
+      the one displayed by the instructors\n"))$res
 
-  if(resout=="ok"){
+  #if(resout=="ok"){
 
   suppressWarnings(suppressMessages(require(svDialogs)))
   #act_psswd <- "shunt"
@@ -1342,10 +1342,13 @@ make_exam_gui <- function(){
       }#end input passwd
     }#end for loop
 
-    if((i==limit) & (out!=0))
-      dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
 
+    if(length(psswd)>0){
+      if((i==limit) & (out!=0) 
+        dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
     }
+
+    #}
   }
 
   if(resout=="cancel"){
