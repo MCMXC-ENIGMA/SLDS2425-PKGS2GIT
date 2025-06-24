@@ -1351,9 +1351,9 @@ make_exam_gui <- function(){
     #}
   }
 
-  if(resout=="cancel"){
-    outfinal <- dlg_message("Run the function again and read the on screen instructions carefully")$res
-  }
+#  if(resout=="cancel"){
+#    outfinal <- dlg_message("Run the function again and read the on screen instructions carefully")$res
+#  }
 }
 
 
