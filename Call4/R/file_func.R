@@ -1211,7 +1211,7 @@ make_exam_gui <- function(){
   out <- try(inst.libs())
 
 
-  if(!inherits(out, "try-error"))
+  if(!inherits(out, "try-error")){
 
   resout <- dlg_message(
     c("By pressing 'Ok' you agree that the output matches 
