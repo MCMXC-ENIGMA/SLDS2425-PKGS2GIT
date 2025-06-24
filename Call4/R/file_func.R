@@ -1337,6 +1337,7 @@ make_exam_gui <- function(){
 
     }
   }else{
+    print("heyyyyy")
     dlg_input("Run the function again and read the on screen instructions carefully")$res
   }
 }
