@@ -1209,7 +1209,7 @@ make_exam_gui <- function(){
 
 
   out <- try(inst.libs())
-
+  Sys.sleep(5)
 
   if(!inherits(out, "try-error")){
 
@@ -1337,8 +1337,7 @@ make_exam_gui <- function(){
 
     }
   }else{
-    print("heyyyyy")
-    dlg_input("Run the function again and read the on screen instructions carefully")$res
+    dlg_message("Run the function again and read the on screen instructions carefully")$res
   }
 }
 
