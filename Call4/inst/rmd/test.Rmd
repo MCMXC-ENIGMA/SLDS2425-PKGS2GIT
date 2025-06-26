@@ -27,8 +27,8 @@ print("Datasets in SLDS2425")
 (lst <- data(package = "SLDS2425")$results[ , "Item"])
 print("done")
 
-data(beer)
-glimpse(beer)
+data(autism_screening)
+glimpse(autism_screening)
 data(leukemia)
 #glimpse(leukemia)
 leukemia[1:10,1:5]
