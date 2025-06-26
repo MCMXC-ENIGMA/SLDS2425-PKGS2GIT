@@ -1347,6 +1347,9 @@ make_exam_gui <- function(){
 
 
     if(length(psswd)>0){
+      print(out)
+      print(limit)
+      print((i==limit) & (out!=0))
       if((i==limit) & (out!=0))
         dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
     }
