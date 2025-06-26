@@ -1355,7 +1355,7 @@ make_exam_gui <- function(){
   if(final_knitt){
       rmarkdown::render(file_name)
       browseURL(file_name)
-      dlg_message("File automatically knitted\n") 
+      #dlg_message("File automatically knitted\n") 
   }
 }
 
