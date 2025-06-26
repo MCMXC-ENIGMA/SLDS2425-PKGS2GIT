@@ -1315,7 +1315,7 @@ make_exam_gui <- function(){
   STRING2SUB <- list(mn, name, surname)
 
 
-
+   final_knitt <- 0
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
@@ -1336,10 +1336,8 @@ make_exam_gui <- function(){
             }
             dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
             file.edit(file_name)
-            rmarkdown::render(file_name)
-            browseURL(file_name)
-
-            dlg_message("File automatically opened in Rstudio. File automatically knitted\n")
+            dlg_message("File automatically opened in Rstudio\n")
+            final_knitt <- 1
             break
           }#end out==0
       }#end input passwd
@@ -1354,9 +1352,11 @@ make_exam_gui <- function(){
     #}
   }
 
-#  if(resout=="cancel"){
-#    outfinal <- dlg_message("Run the function again and read the on screen instructions carefully")$res
-#  }
+  if(final_knitt){
+      rmarkdown::render(file_name)
+      browseURL(file_name)
+      dlg_message("File automatically knitted\n") 
+  }
 }
 
 
