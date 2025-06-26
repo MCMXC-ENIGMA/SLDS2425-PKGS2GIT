@@ -1354,8 +1354,8 @@ make_exam_gui <- function(){
     #}
   }
 
-            dlg_message("File automatically knitted\n") 
-            browseURL(file_name_html)
+    dlg_message("File automatically knitted\n") 
+    browseURL(system.file(getwd(), file_name_html))
 
 
 }
