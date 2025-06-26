@@ -1338,7 +1338,7 @@ make_exam_gui <- function(){
             dlg_message("File automatically opened in Rstudio\n")
             rmarkdown::render(file_name)
             file_name_html <- gsub("Rmd","html", file_name)
-            dlg_message("File automatically knitted\n") 
+            #dlg_message("File automatically knitted\n") 
 #            my_browse(file_name_html)
             break
           }#end out==0
