@@ -1320,11 +1320,11 @@ make_exam_gui <- function(){
      psswd <- dlg_input("Password")$res
       if(length(psswd)>0){
 
-         suppressMessages(out <- system(command = 
+         suppressMessages(vltr_out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
 
-         if(out==0){
+         if(vltr_out==0){
             file.rename("Exam_Call.Rmd",file_name)
 
             #write info into Rmd file
@@ -1347,10 +1347,7 @@ make_exam_gui <- function(){
 
 
     if(length(psswd)>0){
-      print(out)
-      print(limit)
-      print((i==limit) & (out!=0))
-      if((i==limit) & (out!=0))
+      if((i==limit) & (vltr_out!=0))
         dlg_message("Exam not created. Exceeded maximum number of attempts to input the correct password. Run the function again.")  
     }
 
