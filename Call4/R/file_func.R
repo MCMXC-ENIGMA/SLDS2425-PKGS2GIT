@@ -1336,10 +1336,6 @@ make_exam_gui <- function(){
             dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
             file.edit(file_name)
             dlg_message("File automatically opened in Rstudio\n")
-            rmarkdown::render(file_name)
-            file_name_html <- gsub("Rmd","html", file_name)
-            #dlg_message("File automatically knitted\n") 
-#            my_browse(file_name_html)
             break
           }#end out==0
       }#end input passwd
@@ -1354,17 +1350,10 @@ make_exam_gui <- function(){
     #}
   }
     
-            my_browse(file_name_html)
 
 
 }
 
-
-my_browse <- function(link){
-
-  browseURL(link)
-
-}
 
 slds.exam <- function(){
   make_exam_gui()
