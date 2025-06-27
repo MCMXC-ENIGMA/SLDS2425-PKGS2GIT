@@ -1325,7 +1325,7 @@ make_exam_gui <- function(){
 
          if(vltr_out==0){
             file.rename("Exam_Call.Rmd",file_name)
-
+            print("CIAO")
             #write info into Rmd file
             for(j in 1:length(PATTERNS)){
               tx  <- readLines(file_name)
