@@ -1274,7 +1274,7 @@ make_exam_gui <- function(){
   }
 
 
-  file_name <- paste0(paste(name, surname, mn, Sys.time(), sep="_"),".Rmd") 
+  file_name <- paste0(paste(name, surname, mn, date(), sep="_"),".Rmd") 
 
   cond <- 1
   while(cond){
