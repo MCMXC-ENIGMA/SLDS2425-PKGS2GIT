@@ -1273,9 +1273,9 @@ make_exam_gui <- function(){
   
   }
 
-
+  set.seed(mn)
   file_name <- paste0(paste(name, surname, mn, round(runif(1,0,10),2), sep="_"),".Rmd") 
-#   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
+# file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
   cond <- 1
   while(cond){
   res <- dlg_message(
