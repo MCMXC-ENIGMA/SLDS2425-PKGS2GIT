@@ -1274,8 +1274,8 @@ make_exam_gui <- function(){
   }
 
 
-#  file_name <- paste0(paste(name, surname, mn, date(), sep="_"),".Rmd") 
-   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
+  file_name <- paste0(paste(name, surname, mn, round(runif(1,0,10),2), sep="_"),".Rmd") 
+#   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
   cond <- 1
   while(cond){
   res <- dlg_message(
@@ -1326,7 +1326,6 @@ make_exam_gui <- function(){
          if(vltr_out==0){
             print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
-            print("CIAO")
             #write info into Rmd file
             for(j in 1:length(PATTERNS)){
               tx  <- readLines(file_name)
@@ -1334,10 +1333,9 @@ make_exam_gui <- function(){
                      replace = paste0(STRINGS[[j]], STRING2SUB[[j]]), x = tx)
               writeLines(tx2, con=file_name)
             }
-            print("CIAO2")
             dlg_message(c("Exam successfully created. The file is in folder\n",getwd()))
             file.edit(file_name)
-            print("CIAO3")
+
             dlg_message("File automatically opened in Rstudio\n")
             break
           }#end out==0
