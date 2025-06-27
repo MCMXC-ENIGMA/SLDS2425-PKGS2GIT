@@ -1274,8 +1274,8 @@ make_exam_gui <- function(){
   }
 
 
-  file_name <- paste0(paste(name, surname, mn, date(), sep="_"),".Rmd") 
-
+#  file_name <- paste0(paste(name, surname, mn, date(), sep="_"),".Rmd") 
+   file_name <- paste0(paste(name, surname, mn, sep="_"),".Rmd") 
   cond <- 1
   while(cond){
   res <- dlg_message(
@@ -1324,6 +1324,7 @@ make_exam_gui <- function(){
           wait = TRUE, ignore.stdout = TRUE))
 
          if(vltr_out==0){
+            print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
             print("CIAO")
             #write info into Rmd file
