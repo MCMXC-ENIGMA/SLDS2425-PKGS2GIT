@@ -1323,7 +1323,7 @@ make_exam_gui <- function(){
          suppressMessages(vltr_out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
-
+         print(vltr_out)
          if(vltr_out==0){
             print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
