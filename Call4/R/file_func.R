@@ -1318,8 +1318,9 @@ make_exam_gui <- function(){
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
      print(psswd)
+     print("dino")
       if(length(psswd)>0){
-
+print("pippo")
          suppressMessages(vltr_out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
