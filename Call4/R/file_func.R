@@ -1317,6 +1317,7 @@ make_exam_gui <- function(){
 
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
+     print(psswd)
       if(length(psswd)>0){
 
          suppressMessages(vltr_out <- system(command = 
