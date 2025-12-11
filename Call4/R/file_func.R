@@ -1322,6 +1322,8 @@ make_exam_gui <- function(){
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
 
+print(locate_text)
+
           suppressMessages(vltr_out2 <- try(system(command = 
           paste0("7z x \"", locate_text, "\" -p", psswd, " -o\"", getwd(), "\" -y"),
           wait = TRUE, ignore.stdout = TRUE), silent=TRUE))
@@ -1329,10 +1331,6 @@ make_exam_gui <- function(){
           suppressMessages(vltr_out3 <- try(system(command = 
           paste0("\"C:\\Program Files\\7-Zip\\7z.exe\" x \"", locate_text, "\" -p", psswd, " -o\"", getwd(), "\" -y"), 
           wait = TRUE, ignore.stdout = TRUE), silent=TRUE))
-
-print(vltr_out)
-print(vltr_out2)
-print(vltr_out3)
 
          if(any(c(vltr_out, vltr_out2, vltr_out3)==0)){
           print("dai")
