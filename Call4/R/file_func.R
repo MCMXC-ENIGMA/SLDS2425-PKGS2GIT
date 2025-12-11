@@ -1334,7 +1334,7 @@ print(vltr_out)
 print(vltr_out2)
 print(vltr_out3)
 
-         if(any(c(vltr_out, vltr_out2, vltr_out3))==0){
+         if(any(c(vltr_out, vltr_out2, vltr_out3)==0)){
           print("dai")
             print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
