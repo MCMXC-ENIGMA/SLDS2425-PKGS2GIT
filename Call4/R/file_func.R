@@ -1322,10 +1322,8 @@ make_exam_gui <- function(){
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
 
-print(locate_text)
-
           suppressMessages(vltr_out2 <- try(system(command = 
-          paste0("7z x \"", locate_text, "\" -p", psswd, " -o\"", getwd(), "\" -y"),
+          paste0("7z x \"", locate_text, "\" -p", psswd, " -o\" ", getwd(), "\" -y"),
           wait = TRUE, ignore.stdout = TRUE), silent=TRUE))
 
           suppressMessages(vltr_out3 <- try(system(command = 
@@ -1333,7 +1331,6 @@ print(locate_text)
           wait = TRUE, ignore.stdout = TRUE), silent=TRUE))
 
          if(any(c(vltr_out, vltr_out2, vltr_out3)==0)){
-          print("dai")
             print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
             #write info into Rmd file
