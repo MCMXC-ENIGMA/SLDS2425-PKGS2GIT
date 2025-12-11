@@ -1333,6 +1333,9 @@ make_exam_gui <- function(){
           paste0("\"C:\\Program Files\\7-Zip\\7z.exe\" x \"", locate_text, "\" -p", psswd, " -o\"", getwd(), "\" -y"), 
           wait = TRUE, ignore.stdout = TRUE), silent=TRUE))
 
+print(vltr_out)
+print(vltr_out2)
+print(vltr_out3)
 
          if(any(c(vltr_out, vltr_out2, vltr_out3))==0){
             print(file_name)
