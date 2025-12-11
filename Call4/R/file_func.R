@@ -1317,10 +1317,7 @@ make_exam_gui <- function(){
 
    for(i in 1:limit){
      psswd <- dlg_input("Password")$res
-     print(psswd)
-     print("dino2")
       if(length(psswd)>0){
-      print("pippo3")
          suppressMessages(vltr_out <- system(command = 
           paste0("unzip -o -P ", psswd, " ", locate_text), 
           wait = TRUE, ignore.stdout = TRUE))
@@ -1338,6 +1335,7 @@ print(vltr_out2)
 print(vltr_out3)
 
          if(any(c(vltr_out, vltr_out2, vltr_out3))==0){
+          print("dai")
             print(file_name)
             file.rename("Exam_Call.Rmd",file_name)
             #write info into Rmd file
